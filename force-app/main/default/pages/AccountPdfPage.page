@@ -1,0 +1,54 @@
+<apex:page standardController="Account" renderAs="pdf" showHeader="false">
+    
+    <table style="width:100%; border:1px solid #ccc; border-collapse:collapse; margin-bottom:20px;">
+        <tr>
+            <td colspan="2" style="text-align:center; background-color:black; color:white; padding:8px; border-radius:4px;">
+                Account Details
+            </td>
+        </tr>
+        
+        <tr style="background-color:#c5c5c5;">
+            <td style="width:30%; font-weight:bold; border:1px solid #ccc; padding:5px; background-color:#f0f0f0;">Account Name</td>
+            <td style="border:1px solid #ccc; padding:5px; background-color:#f0f0f0;" >{!Account.Name}</td>
+        </tr>
+        <tr style="background-color:#ffffff;">
+            <td style="font-weight:bold; border:1px solid #ccc; padding:5px;">Phone</td>
+            <td style="border:1px solid #ccc; padding:5px;">{!Account.Phone}</td>
+        </tr>
+        <tr style="background-color:#c5c5c5;">
+            <td style="font-weight:bold; border:1px solid #ccc; padding:5px; background-color:#f0f0f0;">Industry</td>
+            <td style="border:1px solid #ccc; padding:5px; background-color:#f0f0f0;">{!Account.Industry}</td>
+        </tr>
+    </table>
+    
+    
+    <table border="1" style="width:100%; border-collapse:collapse;">
+        <tr>
+            <td colspan="4" style="text-align:center; background-color:black; color:white; padding:8px; border-radius:4px;">
+                Contact Details
+            </td></tr>
+        <tr style="background-color:#c5c5c5; text-align:left;">
+            <th style="padding:5px;">First Name</th>
+            <th style="padding:5px;">Last Name</th>
+            <th style="padding:5px;">Email</th>
+            <th style="padding:5px;">Created Date</th>
+        </tr>
+        
+        <apex:variable var="rowIndex" value="{!0}" />
+        <apex:repeat value="{!Account.Contacts}" var="c">
+            <apex:variable var="currentIndex" value="{!rowIndex + 1}" />
+            <tr style="background-color:{!IF(MOD(currentIndex,2)=0,'#c5c5c5','#ffffff')}">
+                <td style="padding:5px;">{!c.FirstName}</td>
+                <td style="padding:5px;">{!c.LastName}</td>
+                <td style="padding:5px;">{!c.Email}</td>
+                <td style="padding:5px;">
+                    <apex:outputText value="{0,date,dd/MM/yyyy}">
+                        <apex:param value="{!c.CreatedDate}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <apex:variable var="rowIndex" value="{!currentIndex}" />
+        </apex:repeat>
+    </table>
+    
+</apex:page>

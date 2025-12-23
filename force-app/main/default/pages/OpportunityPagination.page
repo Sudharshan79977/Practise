@@ -1,0 +1,30 @@
+<apex:page controller="OpportunityPaginationController">
+    <apex:form id="form">
+        <apex:pageBlock title="Opportunity List with Pagination" id="pb">
+            
+            <apex:pageBlockTable value="{!opportunities}" var="opp">
+                <apex:column value="{!opp.Name}" headerValue="Opportunity Name"/>
+                <apex:column value="{!opp.StageName}" headerValue="Stage"/>
+                <apex:column value="{!opp.Amount}" headerValue="Amount"/>
+                <apex:column value="{!opp.CloseDate}" headerValue="Close Date"/>
+                <apex:column value="{!opp.Account.Name}" headerValue="Account"/>
+            </apex:pageBlockTable>
+            
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!previousPage}" 
+                    value="Previous" 
+                    rerender="pb"
+                    disabled="{!NOT(hasPrevious)}"/>
+                
+                <apex:commandButton action="{!nextPage}" 
+                    value="Next" 
+                    rerender="pb"
+                    disabled="{!NOT(hasNext)}"/>
+                
+                <apex:outputText value=" Page {!pageNumber} of {!CEILING(totalRecords / pageSize)} "
+                    style="margin-left:15px"/>
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

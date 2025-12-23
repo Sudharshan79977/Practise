@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Account Page">
+        <div class="slds-m-around_medium">
+            <lightning-datatable
+                key-field="id"
+                data={account}
+                columns={columns}
+                hide-checkbox-column
+                show-row-number-column
+            >
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+</template>

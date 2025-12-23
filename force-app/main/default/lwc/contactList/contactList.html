@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Contacts Data Table" icon-name="standard:contact">
+        <lightning-datatable
+            key-field="Id"
+            data={contacts}
+            columns={columns}
+            hide-checkbox-column>
+        </lightning-datatable>
+
+        <div class="slds-m-top_small slds-grid slds-grid_align-spread slds-p-horizontal_small">
+            <lightning-button 
+                label="Previous" 
+                onclick={handlePrev} 
+                disabled={isPrevDisabled}>
+            </lightning-button>
+
+            <span class="slds-align-middle">Page {page} of {totalPages}</span>
+
+            <lightning-button 
+                label="Next" 
+                onclick={handleNext} 
+                disabled={isNextDisabled}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>
